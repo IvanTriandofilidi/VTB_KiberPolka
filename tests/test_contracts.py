@@ -6,6 +6,7 @@ import torch
 from cybershelf.data import align, load_features, load_targets, submission
 from cybershelf.features import FeatureBuilder
 from cybershelf.metrics import macro_auc
+from cybershelf.neural_baseline import NumericBaseline
 from cybershelf.stacking import StackingNet, batch_indices, focal_loss, predict_logits
 
 
@@ -106,3 +107,31 @@ def test_stacker_shape_eval_and_tail():
     assert scores.shape == (7, 41)
     assert np.isfinite(scores).all()
     np.testing.assert_allclose(scores[0], scores[-1], atol=1e-6)
+
+
+def test_numeric_baseline_train_only_scaling_reload_and_partial_batches(tmp_path):
+    import joblib
+
+    torch.set_num_threads(2)
+    rng = np.random.default_rng(4)
+    frame = pd.DataFrame({"customer_id": np.arange(17),
+                          "num_feature_1": rng.normal(size=17),
+                          "num_feature_2": np.full(17, np.nan)})
+    targets = rng.integers(0, 2, size=(17, 41))
+    baseline = NumericBaseline().fit(frame.iloc[:13], targets[:13], epochs=1, batch_size=6)
+    assert baseline.preprocess[-1].n_samples_seen_ == 13
+    assert np.isfinite(baseline.history[0]["train_bce"])
+    extreme = frame.iloc[13:].copy()
+    extreme["num_feature_1"] = 1000
+    mean_before = baseline.preprocess[-1].mean_.copy()
+    scores = baseline.predict(extreme, batch_size=3)
+    assert scores.shape == (4, 41) and np.isfinite(scores).all()
+    np.testing.assert_array_equal(baseline.preprocess[-1].mean_, mean_before)
+    path = tmp_path / "baseline.joblib"
+    joblib.dump(baseline, path)
+    restored = joblib.load(path)
+    np.testing.assert_allclose(restored.predict(extreme, batch_size=3), scores,
+                               rtol=1e-5, atol=1e-5)
+    np.testing.assert_allclose(restored.predict(frame.iloc[13:], batch_size=2),
+                               baseline.predict(frame.iloc[13:], batch_size=3),
+                               rtol=1e-5, atol=1e-5)

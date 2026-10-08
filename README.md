@@ -83,7 +83,7 @@ Training defaults to five folds, CatBoost 3,500 iterations, XGBoost 1,000 iterat
 - **Portable execution:** CPU defaults, configurable CUDA, a package entry point and automated integration checks.
 - **Complete predictions:** partial inference batches retain every customer, with strict shape and finite-value checks.
 
-The source also explores LightGBM, logistic regression for rare targets, feature selection and CatBoost classifier chains. These are documented as [research experiments](docs/experiments.md); they are not additional inputs to the final two-branch stack.
+I also explored LightGBM, logistic regression for rare targets, feature selection, CatBoost classifier chains and a standalone numerical MLP (`137 → 512 → 256 → 41` in the original main-feature experiment). The numerical MLP is available as a tested [`NumericBaseline`](src/cybershelf/neural_baseline.py). See [research experiments](docs/experiments.md) for the context; these models are separate from the final two-branch stack.
 
 ## Repository layout
 

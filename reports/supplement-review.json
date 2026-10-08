@@ -1,0 +1,44 @@
+{
+  "review_date": "2026-10-08",
+  "source": "Supplementary VTB Bank model notebook supplied by the author",
+  "evidence": "Visible code cells and saved output inspected through the authenticated notebook UI",
+  "captured_code_sha256": "2b12d32dc561393d7bf2866e47cb8b6aa28664208e953b05d28a8609fbb69d5a",
+  "banking_cells_reviewed": [
+    134,
+    135,
+    154,
+    157,
+    161,
+    164,
+    165,
+    167,
+    168,
+    169,
+    170,
+    173,
+    181,
+    191
+  ],
+  "numeric_mlp": {
+    "observed_input_dim": 137,
+    "output_dim": 41,
+    "hidden_dims": [
+      512,
+      256
+    ],
+    "activations": "ReLU",
+    "batch_normalization": true,
+    "dropout": [
+      0.3,
+      0.2
+    ],
+    "objective_used": "Unweighted BCEWithLogitsLoss",
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "epochs_configured": 20,
+    "batch_size_configured": 2048,
+    "validation_score": "not established in the inspected banking section"
+  },
+  "relationship": "Standalone numerical baseline; not a third input to the final 82-input stacker",
+  "scope": "Only banking experiments inform this repository; unrelated notebook sections excluded"
+}
