@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cybershelf"
+version = "0.1.0"
+description = "Multi-label banking product ranking with boosted trees and neural stacking"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26,<3", "pandas>=2.2,<3", "pyarrow>=18,<26", "scikit-learn>=1.6,<2", "iterative-stratification>=0.1.9,<0.2", "catboost>=1.2.8,<2", "xgboost>=3,<4", "torch>=2.2,<3", "joblib>=1.4,<2", "matplotlib>=3.8,<4"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.9", "build>=1"]
+experiments = ["lightgbm>=4.5,<5"]
+notebooks = ["ipykernel>=6", "nbformat>=5", "nbclient>=0.10"]
+
+[project.scripts]
+cybershelf = "cybershelf.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100

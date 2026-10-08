@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="590" viewBox="0 0 1400 590">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10" fill="#64748B"/></marker></defs>
+<rect width="1400" height="590" rx="24" fill="#0F172A"/>
+<text x="48" y="58" fill="#F8FAFC" font-family="Arial,sans-serif" font-size="30" font-weight="700">Cybershelf · two models, one learned combination</text>
+<text x="48" y="94" fill="#94A3B8" font-family="Arial,sans-serif" font-size="17">Cross-fitted development predictions · outer holdout reserved before training</text>
+<rect x="45" y="225" width="245" height="166" rx="15" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+<text x="65" y="258" fill="#38BDF8" font-family="Arial,sans-serif" font-size="20" font-weight="700">Customer features</text>
+<text x="65" y="289" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">Main + extra tables</text>
+<text x="65" y="314" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">Validated customer-ID joins</text>
+<text x="65" y="339" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">Missingness + row statistics</text>
+<text x="65" y="364" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">Fold-fitted preprocessing</text>
+<rect x="360" y="145" width="260" height="136" rx="15" fill="#1E293B" stroke="#FBBF24" stroke-width="2"/>
+<text x="380" y="178" fill="#FBBF24" font-family="Arial,sans-serif" font-size="20" font-weight="700">CatBoost</text>
+<text x="380" y="209" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">String categories · MultiLogloss</text>
+<text x="380" y="234" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">41 product probabilities</text>
+<text x="380" y="259" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">One held-out row per fold</text>
+<rect x="360" y="336" width="260" height="136" rx="15" fill="#1E293B" stroke="#A78BFA" stroke-width="2"/>
+<text x="380" y="369" fill="#A78BFA" font-family="Arial,sans-serif" font-size="20" font-weight="700">XGBoost</text>
+<text x="380" y="400" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">Categorical histogram trees</text>
+<text x="380" y="425" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">41 product probabilities</text>
+<text x="380" y="450" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">One held-out row per fold</text>
+<rect x="690" y="242" width="220" height="136" rx="15" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+<text x="710" y="275" fill="#38BDF8" font-family="Arial,sans-serif" font-size="20" font-weight="700">Stacking features</text>
+<text x="710" y="306" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">Concatenate: 41 + 41 = 82</text>
+<text x="710" y="331" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">Quantile → normal</text>
+<text x="710" y="356" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">Fit on meta-training only</text>
+<rect x="980" y="242" width="245" height="136" rx="15" fill="#1E293B" stroke="#34D399" stroke-width="2"/>
+<text x="1000" y="275" fill="#34D399" font-family="Arial,sans-serif" font-size="20" font-weight="700">Neural meta-model</text>
+<text x="1000" y="306" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">82 → 128 → 256 → 41</text>
+<text x="1000" y="331" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">BatchNorm · SiLU · dropout</text>
+<text x="1000" y="356" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16">Source focal objective</text>
+<path d="M290 277 L323 277 L323 213 L352 213" fill="none" stroke="#64748B" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M290 340 L323 340 L323 404 L352 404" fill="none" stroke="#64748B" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M620 213 L650 213 L650 284 L682 284" fill="none" stroke="#64748B" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M620 404 L650 404 L650 337 L682 337" fill="none" stroke="#64748B" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M910 309 L972 309" fill="none" stroke="#64748B" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M1225 309 L1284 309" fill="none" stroke="#64748B" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="1305" y="292" fill="#F8FAFC" font-family="Arial,sans-serif" font-size="26" font-weight="700" text-anchor="middle">41</text>
+<text x="1305" y="324" fill="#CBD5E1" font-family="Arial,sans-serif" font-size="16" text-anchor="middle">logits</text>
+<text x="48" y="548" fill="#94A3B8" font-family="Arial,sans-serif" font-size="17">Ranking output: customer_id + 41 predict_* columns · logits are not calibrated probabilities</text></svg>

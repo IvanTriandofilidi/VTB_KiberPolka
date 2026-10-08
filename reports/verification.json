@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-08",
+  "python": "3.12.14",
+  "platform": "Windows",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.9.1",
+    "catboost": "1.2.10",
+    "xgboost": "3.4.1",
+    "torch": "2.14.1+cpu",
+    "pyarrow": "25.0.1",
+    "iterative-stratification": "0.1.9"
+  },
+  "unit_tests_passed": 14,
+  "walkthrough": "all code cells executed",
+  "integration": {
+    "rows": 1000,
+    "targets": 41,
+    "folds": 2,
+    "tree_iterations_per_branch": 8,
+    "neural_epochs": 2,
+    "holdout_rows": 200,
+    "test_rows": 37,
+    "scope": "Synthetic execution verification, not competition accuracy",
+    "artifact_reload": "verified chunked predictions match saved output",
+    "oof_coverage": "800 unique development IDs, one prediction per branch and fold",
+    "holdout_isolation": "200 outer-holdout IDs excluded from OOF and base fitting"
+  },
+  "wheel": "build succeeded"
+}
